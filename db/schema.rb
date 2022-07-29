@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_29_192717) do
+ActiveRecord::Schema.define(version: 2022_07_29_195440) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "match_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.string "title"
@@ -25,6 +31,14 @@ ActiveRecord::Schema.define(version: 2022_07_29_192717) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "chat_id"
+    t.integer "user_id"
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tic_tac_toe_match_histories", force: :cascade do |t|
     t.text "history"
     t.integer "match_id"
@@ -35,6 +49,13 @@ ActiveRecord::Schema.define(version: 2022_07_29_192717) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users_chats", force: :cascade do |t|
+    t.integer "chat_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
