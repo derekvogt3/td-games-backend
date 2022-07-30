@@ -42,4 +42,14 @@ class UsersController < Sinatra::Base
     end
   end
 
+  patch "/users/:id" do
+    begin
+      user = User.find(params[:id])
+      user.update(params)
+      user.to_json
+    rescue
+      { error: "Fail to create user" }.to_json
+    end
+  end
+
 end
