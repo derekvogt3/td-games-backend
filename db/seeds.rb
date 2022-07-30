@@ -2,10 +2,10 @@ puts "🌱 Seeding spices..."
 
 # Seed your database here
 
-User.create(username: "tony", password: "123456")
-User.create(username: "derek", password: "abcde")
-User.create(username: "alan", password: "iforgot")
-User.create(username: "willie", password: "itmakesense")
+User.create(username: "tony", password: "1450575459") #123456
+User.create(username: "derek", password: "92599395") #abcde
+User.create(username: "alan", password: "1724788940") #iforget
+User.create(username: "willie", password: "262288821") #itmakesense
 
 
 Game.create(title: "Tic-Tac-Toe")

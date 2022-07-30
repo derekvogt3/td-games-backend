@@ -15,4 +15,13 @@ class UsersController < Sinatra::Base
     end
   end
 
+  post "/users" do
+    begin
+      user = User.create(params)
+      user.to_json
+    rescue
+      { error: "Fail to create user" }.to_json
+    end
+  end
+
 end
