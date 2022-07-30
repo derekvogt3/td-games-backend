@@ -4,6 +4,9 @@ puts "🌱 Seeding spices..."
 
 User.create(username: "Tony", password: "123456")
 User.create(username: "Derek", password: "abcde")
+User.create(username: "Alan", password: "iforgot")
+User.create(username: "Willie", password: "itmakesense")
+
 
 Game.create(title: "Tic-Tac-Toe")
 
@@ -21,5 +24,13 @@ UsersChat.create(chat: Chat.first, user: User.last)
 
 Message.create(chat: Chat.first, user: User.first, message: "Lets play a game Derek.")
 Message.create(chat: Chat.first, user: User.last, message: "I want to go home.")
+
+Relation.create(user: User.first, friend_id: User.second.id)
+Relation.create(user: User.second, friend_id: User.first.id)
+Relation.create(user: User.first, friend_id: User.third.id)
+Relation.create(user: User.third, friend_id: User.first.id)
+Relation.create(user: User.second, friend_id: User.last.id)
+Relation.create(user: User.last, friend_id: User.second.id)
+
 
 puts "✅ Done seeding!"

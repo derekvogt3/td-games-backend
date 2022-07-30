@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
   has_many :users_chats
   has_many :chats, through: :users_chats
   has_many :messages
+  has_many :relations
+  
+  def friends
+    self.relations.map {|r| User.find(r[:friend_id])}
+  end
 end
