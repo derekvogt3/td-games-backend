@@ -11,7 +11,7 @@ class UsersController < Sinatra::Base
       user = User.find(params[:id])
       user.to_json
     rescue
-      { error: "Couldn't find data with id: #{params[:id]}" }.to_json
+      { error: "Couldn't find user with id: #{params[:id]}" }.to_json
     end
   end
 
