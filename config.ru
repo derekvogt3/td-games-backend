@@ -15,3 +15,4 @@ use Rack::JSONBodyParser
 run ApplicationController
 use UsersController
 use FriendsController
+use ChatsController
