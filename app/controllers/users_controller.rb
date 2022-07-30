@@ -15,6 +15,24 @@ class UsersController < Sinatra::Base
     end
   end
 
+  get "/user_check/:name" do
+    user = User.find_by(username: params[:name])
+    if user
+      { exist: true, id: user.id }.to_json
+    else
+      { exist: false }.to_json
+    end
+  end
+
+  get "/password_check" do
+    user = User.find_by(username: params[:name], password: params[:pw])
+    if user
+      { matched: true }.to_json
+    else
+      { matched: false }.to_json
+    end
+  end
+
   post "/users" do
     begin
       user = User.create(params)
