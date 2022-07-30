@@ -30,14 +30,14 @@ UsersChat.create(chat: Chat.second, user: User.second)
 Message.create(chat: Chat.first, user: User.first, message: "Lets play a game Derek.")
 Message.create(chat: Chat.first, user: User.last, message: "No, I want to go to concert.")
 
-Relation.create(user: User.first, friend_id: User.second.id, invited_by: User.first.id, accepted?: true)
-Relation.create(user: User.second, friend_id: User.first.id, invited_by: User.first.id, accepted?: true)
-Relation.create(user: User.first, friend_id: User.third.id, invited_by: User.first.id, accepted?: true)
-Relation.create(user: User.third, friend_id: User.first.id, invited_by: User.first.id, accepted?: true)
-Relation.create(user: User.second, friend_id: User.last.id, invited_by: User.second.id, accepted?: true)
-Relation.create(user: User.last, friend_id: User.second.id, invited_by: User.first.id, accepted?: true)
-Relation.create(user: User.first, friend_id: User.last.id, invited_by: User.first.id, accepted?: false)
-Relation.create(user: User.last, friend_id: User.first.id, invited_by: User.first.id, accepted?: false)
+Relation.create(user: User.first, friend_id: User.second.id, invited_by: User.first.id, accepted: true)
+Relation.create(user: User.second, friend_id: User.first.id, invited_by: User.first.id, accepted: true)
+Relation.create(user: User.first, friend_id: User.third.id, invited_by: User.first.id, accepted: true)
+Relation.create(user: User.third, friend_id: User.first.id, invited_by: User.first.id, accepted: true)
+Relation.create(user: User.second, friend_id: User.last.id, invited_by: User.second.id, accepted: true)
+Relation.create(user: User.last, friend_id: User.second.id, invited_by: User.first.id, accepted: true)
+Relation.create(user: User.first, friend_id: User.last.id, invited_by: User.first.id, accepted: false)
+Relation.create(user: User.last, friend_id: User.first.id, invited_by: User.first.id, accepted: false)
 
 
 

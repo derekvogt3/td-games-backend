@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "game_id"
-    t.boolean "finished?", default: false
+    t.boolean "finished", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
     t.integer "user_id"
     t.integer "friend_id"
     t.integer "invited_by"
-    t.boolean "accepted?", default: false
+    t.boolean "accepted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
     t.string "username"
     t.string "password"
     t.string "profile_img"
-    t.boolean "is_login?", default: false
+    t.boolean "is_login", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
