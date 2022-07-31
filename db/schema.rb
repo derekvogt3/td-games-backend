@@ -75,6 +75,9 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
   create_table "users_matches", force: :cascade do |t|
     t.integer "match_id"
     t.integer "user_id"
+    t.integer "friend_id"
+    t.integer "invited_by"
+    t.string "accepted", default: "pending"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
