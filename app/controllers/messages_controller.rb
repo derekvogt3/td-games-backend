@@ -24,4 +24,14 @@ class MessagesController < Sinatra::Base
       { error: "Fail to update message" }.to_json
     end
   end
+
+  delete "/messages/:id" do
+    begin
+      message = Message.find(params[:id])
+      message.delete
+      {}.to_json
+    rescue
+      { error: "Fail to delete message" }.to_json
+    end
+  end
 end
