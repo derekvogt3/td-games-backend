@@ -18,7 +18,7 @@ class UsersController < Sinatra::Base
   get "/user_check/:name" do
     user = User.find_by(username: params[:name])
     if user
-      { exist: true, id: user.id }.to_json
+      { exist: true, id: user.id , is_login: user.is_login}.to_json
     else
       { exist: false }.to_json
     end

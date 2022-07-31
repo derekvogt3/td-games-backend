@@ -18,6 +18,14 @@ class FriendsController < Sinatra::Base
     end
   end
 
+  get "/friends_relation" do
+    begin
+      Relation.where(user_id: params[:user_id], friend_id: params[:friend_id]).to_json
+    rescue
+      { error: "Couldn't find relation" }.to_json
+    end
+  end
+
   post "/friend_invite" do
     begin
       friend = User.find_by(username: params[:friend])
