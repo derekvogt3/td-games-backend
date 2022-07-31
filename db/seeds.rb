@@ -22,10 +22,7 @@ TicTacToeMatchHistory.create(match: Match.first, history: "{player: 'X', positio
 
 Chat.create()
 UsersChat.create(chat: Chat.first, user: User.first)
-UsersChat.create(chat: Chat.first, user: User.last)
-Chat.create()
-UsersChat.create(chat: Chat.second, user: User.first)
-UsersChat.create(chat: Chat.second, user: User.second)
+UsersChat.create(chat: Chat.first, user: User.second)
 
 Message.create(chat: Chat.first, user: User.first, message: "Lets play a game Derek.")
 Message.create(chat: Chat.first, user: User.second, message: "No, I want to go to concert.")
