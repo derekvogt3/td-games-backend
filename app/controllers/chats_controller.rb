@@ -18,4 +18,26 @@ class ChatsController < Sinatra::Base
     end
   end
 
+  get "/find_chats" do
+    begin
+      arr1 = UsersChat.where(user_id: params[:user_id]).map{|chat| chat[:chat_id]}
+      arr2 = UsersChat.where(user_id: params[:friend_id]).map{|chat| chat[:chat_id]}
+      results = arr1 & arr2
+      if results.length > 0
+        results.each do |r|
+          chat = Chat.find(r)
+          if chat.group_type == "pair"
+            return chat.to_json
+          end
+        end
+      end
+      chat = Chat.create()
+      UsersChat.create(chat: chat, user_id: params[:user_id])
+      UsersChat.create(chat: chat, user_id: params[:friend_id])
+      chat.to_json
+    rescue
+      { error: "Couldn't find chat" }.to_json
+    end
+  end
+
 end
