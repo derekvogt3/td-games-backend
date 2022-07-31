@@ -48,7 +48,7 @@ class UsersController < Sinatra::Base
       user.update(params)
       user.to_json
     rescue
-      { error: "Fail to create user" }.to_json
+      { error: "Fail to update user" }.to_json
     end
   end
 

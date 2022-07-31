@@ -14,4 +14,14 @@ class MessagesController < Sinatra::Base
     message = Message.create(params)
     message.to_json
   end
+
+  patch "/messages/:id" do
+    begin
+      message = Message.find(params[:id])
+      message.update(params)
+      message.to_json
+    rescue
+      { error: "Fail to update message" }.to_json
+    end
+  end
 end
