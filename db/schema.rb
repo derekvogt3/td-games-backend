@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_07_30_012709) do
 
   create_table "chats", force: :cascade do |t|
-    t.integer "match_id"
+    t.string "group_type", default: "pair"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "game_id"
+    t.boolean "finished", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -42,6 +43,8 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
   create_table "relations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_id"
+    t.integer "invited_by"
+    t.string "status", default: "pending"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -56,6 +59,8 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password"
+    t.string "profile_img"
+    t.boolean "is_login", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,6 +75,9 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
   create_table "users_matches", force: :cascade do |t|
     t.integer "match_id"
     t.integer "user_id"
+    t.integer "friend_id"
+    t.integer "invited_by"
+    t.string "accepted", default: "pending"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

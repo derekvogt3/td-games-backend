@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   has_many :relations
   
   def friends
-    self.relations.map {|r| User.find(r[:friend_id])}
+    self.relations.filter {|r| r.status == "accepted"}.map {|r| User.find(r[:friend_id])}
+  end
+
+  def friends_pending
+    self.relations.filter {|r| r.status != "accepted"}.map {|r| User.find(r[:friend_id])}
   end
 end
