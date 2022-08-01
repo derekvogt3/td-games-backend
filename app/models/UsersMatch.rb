@@ -3,7 +3,6 @@ class UsersMatch < ActiveRecord::Base
   belongs_to :match
 
 
-
   def self.create_match_invite(user_id,game_id,friend_id)
 
     match = Match.create(game_id:game_id, finished: false)
