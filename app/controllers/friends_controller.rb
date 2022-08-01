@@ -72,10 +72,10 @@ class FriendsController < Sinatra::Base
         else
           r1 = Relation.create(user_id: params[:user_id], friend_id: friend.id, invited_by: params[:user_id])
           r2 = Relation.create(user_id: friend.id, friend_id: params[:user_id], invited_by: params[:user_id])
-          { result: "invite sent" }.to_json
+          { result: "Friend invite sent to #{params[:friend]}" }.to_json
         end
       else
-        { reuslt: "user not found" }.to_json
+        { result: "User not found" }.to_json
       end
     rescue
       { error: "Couldn't send invite" }.to_json
