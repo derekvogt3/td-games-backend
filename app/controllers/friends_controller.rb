@@ -20,7 +20,37 @@ class FriendsController < Sinatra::Base
 
   get "/friends_relation" do
     begin
-      Relation.where(user_id: params[:user_id], friend_id: params[:friend_id]).to_json
+      Relation.find_by(user_id: params[:user_id], friend_id: params[:friend_id]).to_json
+    rescue
+      { error: "Couldn't find relation" }.to_json
+    end
+  end
+
+  get "/accept_relations" do
+    begin
+      r1 = Relation.find_by(user_id: params[:user_id], friend_id: params[:friend_id])
+      r2 = Relation.find_by(user_id: params[:friend_id], friend_id: params[:user_id])
+      r1.update(accepted: "accepted")
+      r2.update(accepted: "accepted")
+      [r1, r2].to_json
+    rescue
+      { error: "Couldn't find relation" }.to_json
+    end
+  end
+
+  delete "/delete_relations" do
+    begin
+      r1 = Relation.find_by(user_id: params[:user_id], friend_id: params[:friend_id])
+      r2 = Relation.find_by(user_id: params[:friend_id], friend_id: params[:user_id])
+      if params[:method] == "delete"
+        r1.delete
+        r2 ? r2.delete : nil
+        {}.to_json
+      elsif params[:method] == "decline"
+        r1.delete
+        r2.update(accepted: "declined")
+        r2.to_json
+      end
     rescue
       { error: "Couldn't find relation" }.to_json
     end
@@ -36,6 +66,8 @@ class FriendsController < Sinatra::Base
             { result: "User already in your friend list"}.to_json
           elsif already_added.accepted == "pending"
             { result: "Already have a pending friend request for this user"}.to_json
+          elsif already_added.accepted == "declined"
+            { result: "This user declined your last invitation, you need to cancel that before you send a new one."}.to_json
           end
         else
           r1 = Relation.create(user_id: params[:user_id], friend_id: friend.id, invited_by: params[:user_id])
