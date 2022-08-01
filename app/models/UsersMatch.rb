@@ -4,12 +4,15 @@ class UsersMatch < ActiveRecord::Base
 
 
 
-  def create_match(user_id,game_id)
+  def self.create_match_invite(user_id,game_id,friend_id)
 
-    Match.create(game_id:)
+    match = Match.create(game_id:game_id, finished: false)
 
-    UsersMatch.create()
-
+    self.create(user_id:user_id,friend_id:friend_id,invited_by:user_id,match_id:match.id)
+    self.create(user_id:friend_id,friend_id:user_id,invited_by:user_id,match_id:match.id)
+    match
 
   end
+
+
 end
