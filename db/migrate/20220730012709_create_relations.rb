@@ -4,7 +4,7 @@ class CreateRelations < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.integer :friend_id
       t.integer :invited_by
-      t.string :accepted, default: "pending"
+      t.string :status, default: "pending"
       t.timestamps
     end
   end

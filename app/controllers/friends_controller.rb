@@ -30,8 +30,8 @@ class FriendsController < Sinatra::Base
     begin
       r1 = Relation.find_by(user_id: params[:user_id], friend_id: params[:friend_id])
       r2 = Relation.find_by(user_id: params[:friend_id], friend_id: params[:user_id])
-      r1.update(accepted: "accepted")
-      r2.update(accepted: "accepted")
+      r1.update(status: "accepted")
+      r2.update(status: "accepted")
       [r1, r2].to_json
     rescue
       { error: "Couldn't find relation" }.to_json
@@ -48,7 +48,7 @@ class FriendsController < Sinatra::Base
         {}.to_json
       elsif params[:method] == "decline"
         r1.delete
-        r2.update(accepted: "declined")
+        r2.update(status: "declined")
         r2.to_json
       end
     rescue
@@ -62,11 +62,11 @@ class FriendsController < Sinatra::Base
       if friend
         already_added = Relation.find_by(user_id: params[:user_id], friend_id: friend.id)
         if already_added
-          if already_added.accepted == "accepted"
+          if already_added.status == "accepted"
             { result: "User already in your friend list"}.to_json
-          elsif already_added.accepted == "pending"
+          elsif already_added.status == "pending"
             { result: "Already have a pending friend request for this user"}.to_json
-          elsif already_added.accepted == "declined"
+          elsif already_added.status == "declined"
             { result: "This user declined your last invitation, you need to cancel that before you send a new one."}.to_json
           end
         else
