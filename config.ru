@@ -17,3 +17,4 @@ use UsersController
 use FriendsController
 use ChatsController
 use MessagesController
+use MatchMakingController

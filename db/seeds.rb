@@ -12,8 +12,8 @@ Game.create(title: "Tic-Tac-Toe")
 
 Match.create(game: Game.first)
 
-UsersMatch.create(match: Match.first, user: User.first)
-UsersMatch.create(match: Match.first, user: User.last)
+UsersMatch.create(match: Match.first, user: User.first,  friend_id:User.second.id, invited_by:User.first.id)
+UsersMatch.create(match: Match.first, user: User.second, friend_id:User.first.id, invited_by:User.first.id)
 
 # TicTacToeMatchHistory.create(match: Match.first, history: "[{'O': 1, 'player': 1}, {'X': 3, 'player: 2'}]")
 TicTacToeMatchHistory.create(match: Match.first, history: "{player: 'X', position: 1, user_id: 1}")
