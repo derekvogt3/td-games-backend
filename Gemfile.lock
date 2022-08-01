@@ -22,12 +22,8 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     diff-lcs (1.4.4)
-    em-websocket (0.5.3)
-      eventmachine (>= 0.12.9)
-      http_parser.rb (~> 0)
     eventmachine (1.2.7)
     ffi (1.15.3)
-    http_parser.rb (0.8.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     listen (3.5.1)
@@ -90,6 +86,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  arm64-darwin-20
   arm64-darwin-21
   x86_64-darwin-19
   x86_64-linux
@@ -97,7 +94,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 6.1)
   database_cleaner (~> 2.0)
-  em-websocket
   pry (~> 0.14.1)
   rack-contrib (~> 2.3)
   rack-cors (~> 1.1)
