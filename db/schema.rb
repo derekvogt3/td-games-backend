@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
   create_table "matches", force: :cascade do |t|
     t.integer "game_id"
     t.text "game_settings"
+    t.text "game_status", default: "{turn: 0, borad:[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']}"
     t.boolean "finished", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
