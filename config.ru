@@ -18,3 +18,4 @@ use FriendsController
 use ChatsController
 use MessagesController
 use MatchMakingController
+use GamesController
