@@ -4,11 +4,13 @@ class MatchMakingController < Sinatra::Base
         UsersMatch.create_match_invite(params[:user_id],params[:game_id],params[:friend_id]).to_json
       end
 
-      get "/all_matches/:user_id" do
+      get "/all_matches" do
         begin
            array = Array.new
            User.find(params[:user_id]).users_matches.map do |matches|
-            array << {usermatch:matches,friend:User.find(matches.friend_id)}
+            if params[:game_id].to_i == Match.find(matches.match_id).game_id
+              array << {usermatch:matches,friend:User.find(matches.friend_id)}
+            end
            end
 
            array.to_json

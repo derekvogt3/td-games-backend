@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
   create_table "matches", force: :cascade do |t|
     t.integer "game_id"
     t.text "game_settings"
-    t.text "game_status", default: "{turn: 0, borad:[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']}"
+    t.text "game_status"
     t.boolean "finished", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -53,10 +53,12 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
   end
 
   create_table "tic_tac_toe_match_histories", force: :cascade do |t|
-    t.text "history"
     t.integer "match_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "player"
+    t.integer "position"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

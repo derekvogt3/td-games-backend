@@ -19,3 +19,4 @@ use ChatsController
 use MessagesController
 use MatchMakingController
 use GamesController
+use TicTacToeController
