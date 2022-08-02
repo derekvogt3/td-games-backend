@@ -8,7 +8,9 @@ User.create(username: "alan", password: "1724788940") #iforget
 User.create(username: "willie", password: "262288821") #itmakesense
 
 
-Game.create(title: "Tic-Tac-Toe")
+Game.create(title: "Tic Tac Toe", image_url: "https://m.media-amazon.com/images/I/61kjGo7vPtL._AC_SX679_.jpg", description: "X O X O X" )
+Game.create(title: "Collect 4", image_url: "https://www.ultraboardgames.com/connect4/gfx/banner2.jpg" )
+Game.create(title: "Reversi", image_url: "https://playpager.com/wp-content/uploads/2019/08/reversi-game.jpg" )
 
 Match.create(game: Game.first)
 
