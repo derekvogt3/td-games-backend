@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :username
       t.string :password
       t.string :profile_img
-      t.boolean :is_login, default: true
+      t.boolean :is_login, default: false
       t.string :in_match
       t.timestamps
     end
