@@ -46,7 +46,9 @@ class TicTacToeController < Sinatra::Base
 
     patch "/tic_tac_toe_finished/:match_id" do
         begin
-            Match.find(params[:match_id]).update(finished: params[:finished])
+            m = Match.find(params[:match_id])
+            m.update(finished: params[:finished])
+            m.users_matches.each {|match| match.update(status: "finished")}
             {success:"Game finished!"}.to_json
         rescue
             {error:"tic tac toe move server error"}.to_json
