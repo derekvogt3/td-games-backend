@@ -60,12 +60,11 @@ class FriendsController < Sinatra::Base
     begin
       friend = User.find_by(username: params[:friend])
       if friend != nil
-        already_added = Relation.find_by(user_id: params[:user_id], friend_id: friend.id)
-        declined = Relation.find_by(user_id: friend.id, friend_id: params[:user_id], status: "declined")
         if params[:user_id] == friend.id
           return { result: "Cannot add yourself as friend!"}.to_json
         end
-
+        
+        declined = Relation.find_by(user_id: friend.id, friend_id: params[:user_id], status: "declined")
         if declined != nil
           declined.delete
           r1 = Relation.create(user_id: params[:user_id], friend_id: friend.id, invited_by: params[:user_id])
@@ -73,6 +72,7 @@ class FriendsController < Sinatra::Base
           return { result: "Friend invite sent to #{params[:friend]}" }.to_json
         end
         
+        already_added = Relation.find_by(user_id: params[:user_id], friend_id: friend.id)
         if already_added != nil
           if already_added.status == "accepted"
             return { result: "User already in your friend list"}.to_json
