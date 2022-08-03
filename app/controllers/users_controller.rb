@@ -52,4 +52,20 @@ class UsersController < Sinatra::Base
     end
   end
 
+
+  patch "/update_prof_pic/:user_id" do
+
+    begin
+
+      user = User.find(params[:user_id])
+      user.update(profile_img: params[:photo_url])
+      user.to_json
+    rescue
+
+      { error: "Fail to update profile pic" }.to_json
+
+    end
+
+  end
+
 end
