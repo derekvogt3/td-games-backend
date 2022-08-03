@@ -59,20 +59,32 @@ class FriendsController < Sinatra::Base
   post "/friend_invite" do
     begin
       friend = User.find_by(username: params[:friend])
-      if friend
+      if friend != nil
+        if params[:user_id] == friend.id
+          return { result: "Cannot add yourself as friend!"}.to_json
+        end
+        
+        declined = Relation.find_by(user_id: friend.id, friend_id: params[:user_id], status: "declined")
+        if declined != nil
+          declined.delete
+          r1 = Relation.create(user_id: params[:user_id], friend_id: friend.id, invited_by: params[:user_id])
+          r2 = Relation.create(user_id: friend.id, friend_id: params[:user_id], invited_by: params[:user_id])
+          return { result: "Friend invite sent to #{params[:friend]}" }.to_json
+        end
+        
         already_added = Relation.find_by(user_id: params[:user_id], friend_id: friend.id)
-        if already_added
+        if already_added != nil
           if already_added.status == "accepted"
-            { result: "User already in your friend list"}.to_json
+            return { result: "User already in your friend list"}.to_json
           elsif already_added.status == "pending"
-            { result: "Already have a pending friend request for this user"}.to_json
+            return { result: "Already have a pending friend request for this user"}.to_json
           elsif already_added.status == "declined"
-            { result: "This user declined your last invitation, you need to cancel that before you send a new one."}.to_json
+            return { result: "This user declined your last invitation, you need to cancel that before you send a new one."}.to_json
           end
         else
           r1 = Relation.create(user_id: params[:user_id], friend_id: friend.id, invited_by: params[:user_id])
           r2 = Relation.create(user_id: friend.id, friend_id: params[:user_id], invited_by: params[:user_id])
-          { result: "Friend invite sent to #{params[:friend]}" }.to_json
+          return { result: "Friend invite sent to #{params[:friend]}" }.to_json
         end
       else
         { result: "User not found" }.to_json
