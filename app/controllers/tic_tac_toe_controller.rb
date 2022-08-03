@@ -26,25 +26,32 @@ class TicTacToeController < Sinatra::Base
         end
     end 
 
-    post "/tic_tac_toe_move" do
+    get "/tic_tac_toe_match_last_history/:match_id" do
+        begin
+            Match.find(params[:match_id]).tic_tac_toe_match_histories.last.to_json
+        rescue
+            {error:"game status server error"}.to_json
+        end
+    end
 
+    post "/tic_tac_toe_move" do
         begin
             TicTacToeMatchHistory.create(player:params[:player],position:params[:position],user_id:params[:user_id],match_id:params[:match_id])
-            Match.update(game_status:params[:game_status])
+            Match.find(params[:match_id]).update(game_status:params[:game_status])
             {success:"move successful"}.to_json
         rescue
             {error:"tic tac toe move server error"}.to_json
         end
     end
 
-    get "/game_status/:match_id" do
+    patch "/tic_tac_toe_finished/:match_id" do
         begin
-            Match.find(params[:match_id]).tic_tac_toe_match_histories.last
+            Match.find(params[:match_id]).update(finished: params[:finished])
+            {success:"Game finished!"}.to_json
         rescue
-            {error:"game status server error"}.to_json
+            {error:"tic tac toe move server error"}.to_json
         end
     end
-
 
 
 end
