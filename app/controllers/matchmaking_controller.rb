@@ -1,7 +1,7 @@
 class MatchMakingController < Sinatra::Base
 
     post "/create_game" do
-        UsersMatch.create_match_invite(params[:user_id],params[:game_id],params[:friend_id]).to_json
+        UsersMatch.create_match_invite(params[:user_id],params[:game_id],params[:friend_id],params[:diffculty]).to_json
       end
 
       get "/all_matches" do

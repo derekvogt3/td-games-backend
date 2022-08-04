@@ -15,7 +15,9 @@ class TicTacToeController < Sinatra::Base
             else
                 x_name = User.find(match.users_matches.first.user_id).username.capitalize()
                 o_name = User.find(match.users_matches.first.friend_id).username.capitalize()
-                match.update(game_status:'{"board":[" ", " ", " ", " ", " ", " ", " ", " ", " "]}',
+                board = '{"board":[" ", " ", " ", " ", " ", " ", " ", " ", " "]}'
+                board = params[:length] == "25" ? '{"board":[" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]}' : board
+                match.update(game_status: board,
                     game_settings:'{"X":['+match.users_matches[0].user_id.to_s+',"'+x_name+'"],"O":['+match.users_matches[0].friend_id.to_s+',"'+o_name+'"]}')
                 hash["match"] = match
                 hash["history"] = "new game"

@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_012709) do
     t.integer "friend_id"
     t.integer "invited_by"
     t.string "status", default: "pending"
+    t.string "diffculty", default: "normal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
