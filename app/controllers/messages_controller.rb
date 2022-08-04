@@ -10,6 +10,10 @@ class MessagesController < Sinatra::Base
     end
   end
 
+  get "/messages_unread/:user_id" do
+    User.find(params[:user_id]).unread_messages.to_json
+  end
+
   post "/messages" do
     message = Message.create(params)
     message.to_json
