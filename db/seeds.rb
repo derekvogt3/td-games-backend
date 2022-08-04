@@ -2,8 +2,8 @@ puts "🌱 Seeding spices..."
 
 # Seed your database here
 
-User.create(username: "tony", password: "1450575459") #123456
-User.create(username: "derek", password: "92599395") #abcde
+User.create(username: "tony", password: "1450575459", profile_img: "https://cdn.vox-cdn.com/thumbor/AaMw8bQMRhPOeiTy-ldtOKt9nfc=/0x38:1920x1043/fit-in/1200x630/cdn.vox-cdn.com/uploads/chorus_asset/file/23601546/diabloimmortal.png") #123456
+User.create(username: "derek", password: "92599395", profile_img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrBpTMNtfNhdBZVYuyad_lzcD0C3vKeiy1oA&usqp=CAU") #abcde
 User.create(username: "alan", password: "1724788940") #iforget
 User.create(username: "willie", password: "262288821") #itmakesense
 
