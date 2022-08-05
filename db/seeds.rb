@@ -10,6 +10,7 @@ User.create(username: "alan", password: "1724788940") #iforget
 Game.create(title: "Tic Tac Toe", image_url: "https://m.media-amazon.com/images/I/61kjGo7vPtL._AC_SX679_.jpg", description: "X O X O X" )
 Game.create(title: "Collect 4", image_url: "https://www.ultraboardgames.com/connect4/gfx/banner2.jpg" )
 Game.create(title: "Reversi", image_url: "https://playpager.com/wp-content/uploads/2019/08/reversi-game.jpg" )
+Game.create(title: "Monopoly", image_url: "https://m.media-amazon.com/images/I/81oC5pYhh2L._AC_SL1500_.jpg", description: "You might not be able see it on this website in your life time~" )
 
 Match.create(game: Game.first)
 
