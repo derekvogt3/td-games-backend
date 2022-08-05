@@ -30,6 +30,14 @@ class TicTacToeController < Sinatra::Base
         end
     end 
 
+    get "/tic_tac_toe_match_histories/:match_id" do
+        begin
+            Match.find(params[:match_id]).tic_tac_toe_match_histories.to_json
+        rescue
+            {error:"game status server error"}.to_json
+        end
+    end
+
     get "/tic_tac_toe_match_last_history/:match_id" do
         begin
             Match.find(params[:match_id]).tic_tac_toe_match_histories.last.to_json
